@@ -7,7 +7,7 @@ export default function Projects() {
        description:
       'A MERN-based quiz generation system where admins, teachers, and students can create, manage, and take quizzes with real-time scoring, multiple question types, and customizable duration.',
     tags: ['MERN', 'React', 'Node.js', 'Express', 'MongoDB'],
-      image: 'dist/assets/quizmify11.PNG',
+      image: '/quizmify11.PNG',
     github: 'https://github.com/nawelamara/Mern-QuizGeneratorGuizmify',
       demo: 'https://example.com',
     },
@@ -16,7 +16,7 @@ export default function Projects() {
        description:
       'Part of a smart tourism system inspired by GetYourGuide. Built the Experience module with advanced search, JSONB modeling, and Angular + Node.js integration with PostgreSQL.',
     tags: ['Angular', 'Node.js', 'Sequelize', 'PostgreSQL', 'TypeScript'],
-    image:'dist/assets/dotcom.PNG',
+    image:'/dotcom.PNG',
     github: 'https://github.com/nawelamara/e-tourism-experience-module',
       demo: 'https://example.com',
     },
@@ -35,7 +35,7 @@ export default function Projects() {
       description:
       'A desktop Java application designed to manage a library of books, including adding, updating, deleting, and searching books using a MySQL database connection.',
     tags: ['Java', 'SpringBoot', 'JPA', 'Thymeleaf', 'MySQL','spring security','Rest API'],
-      image: 'dist/assets/book.PNG',
+      image: '/book.PNG',
       demo: 'https://example.com',
     },
     {
@@ -43,7 +43,7 @@ export default function Projects() {
        description:
       'My personal portfolio built with React and TailwindCSS, featuring smooth animations, a modern UI, and integrated EmailJS contact system.',
     tags: ['React', 'TailwindCSS', 'EmailJS', 'Vercel'],
-    image:'dist/assets/port.PNG', 
+    image:'/port.PNG', 
    github: 'https://github.com/nawelamara/portfolio',
       demo: 'https://example.com',
     },

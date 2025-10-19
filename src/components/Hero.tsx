@@ -93,7 +93,7 @@ export default function Hero() {
                   <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400 animate-spin-slow blur-md opacity-60" />
                   <div className="relative w-full h-full rounded-full p-1 bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400 animate-pulse-slow">
                     <img
-                      src="dist/assets/photo.jpg"
+                      src="/photo.jpg"
                       alt="Profile"
                       className="w-full h-full rounded-full object-cover border-2 border-black"
                     />
@@ -211,7 +211,7 @@ export default function Hero() {
           {/* CTA Buttons with Futuristic Style */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <a
-              href="dist/assets/NawelAmaraCV.pdf"
+              href="/NawelAmaraCV.pdf"
               download="NawelAmaraCV.pdf"
               className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300 shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:shadow-[0_0_50px_rgba(6,182,212,0.6)]"
             >
