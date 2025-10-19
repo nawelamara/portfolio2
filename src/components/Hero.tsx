@@ -198,7 +198,7 @@ export default function Hero() {
               <div className="absolute bottom-0 right-0 w-1 h-1 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
             </a>
             <a
-              href="amaranawel662@gmail.com"
+              href="mailto:amaranawel662@gmail.com"
               className="group relative p-4 rounded-lg bg-black border border-cyan-500/30 hover:border-cyan-400 transition-all duration-300 hover:scale-110 overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />

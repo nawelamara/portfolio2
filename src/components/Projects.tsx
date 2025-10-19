@@ -36,6 +36,8 @@ export default function Projects() {
       'A desktop Java application designed to manage a library of books, including adding, updating, deleting, and searching books using a MySQL database connection.',
     tags: ['Java', 'SpringBoot', 'JPA', 'Thymeleaf', 'MySQL','spring security','Rest API'],
       image: '/book.PNG',
+         github: 'https://github.com/nawelamara/BookManagementJavaProject',
+
       demo: 'https://example.com',
     },
     {
