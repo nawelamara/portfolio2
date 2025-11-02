@@ -1,8 +1,11 @@
 import emailjs from '@emailjs/browser';
 import { Mail, MessageSquare, Send, Heart } from 'lucide-react';
 import { useState } from 'react';
+import { useScrollAnimation } from '../hooks/useScrollAnimation'; // ✅ added
 
 export default function Contact() {
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 }); // ✅ added
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -35,7 +38,6 @@ export default function Contact() {
         return;
       }
 
-      // Basic client-side validation to surface obvious issues before calling EmailJS
       const emptyFields: string[] = [];
       if (!formData.name?.trim()) emptyFields.push('name');
       if (!formData.email?.trim()) emptyFields.push('email');
@@ -47,21 +49,17 @@ export default function Contact() {
         return;
       }
 
-  const templateParams = {
-  name: formData.name,
-  email: formData.email,
-  subject: `New contact from ${formData.name}`,
-  message: formData.message,
-  to_email: 'amaranawel662@gmail.com',
-  to_name: 'Nawel Amara',
-} as Record<string, string>;
+      const templateParams = {
+        name: formData.name,
+        email: formData.email,
+        subject: `New contact from ${formData.name}`,
+        message: formData.message,
+        to_email: 'amaranawel662@gmail.com',
+        to_name: 'Nawel Amara',
+      } as Record<string, string>;
 
+      const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
 
-  // Debug: show exactly what will be sent to EmailJS
-  console.debug('EmailJS templateParams:', templateParams);
-  const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
-
-      // EmailJS returns a status text/code on success
       if (result && (result.status === 200 || result.status === 0)) {
         setStatus('Message sent successfully!');
         setFormData({ name: '', email: '', message: '' });
@@ -72,21 +70,9 @@ export default function Contact() {
         console.error('EmailJS unexpected response:', result);
       }
     } catch (error) {
-      // EmailJS errors can include status/text or be generic Errors. Log full object.
-      console.error('Error sending message via EmailJS (raw):', error);
+      console.error('Error sending message via EmailJS:', error);
       setIsError(true);
-
-      // Try to extract useful info for the user
-      const err: any = error;
-      let message = 'Failed to send message. Please try again.';
-      if (err && typeof err === 'object') {
-        const parts: string[] = [];
-        if (err.status) parts.push(`status: ${err.status}`);
-        if (err.text) parts.push(`text: ${err.text}`);
-        if (err.message) parts.push(`message: ${err.message}`);
-        if (parts.length) message += ` (${parts.join(' | ')})`;
-      }
-      setStatus(message);
+      setStatus('Failed to send message. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -100,23 +86,43 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="min-h-screen flex items-center justify-center py-20 relative">
+    <section
+      id="contact"
+      ref={ref} // ✅ added
+      className="min-h-screen flex items-center justify-center py-20 relative"
+    >
       <div className="max-w-7xl mx-auto px-6 w-full">
-        <div className="text-center mb-16">
+        {/* Header */}
+        <div
+          className={`text-center mb-16 transition-all duration-1000 ${
+            isVisible ? 'scroll-fade-in' : 'opacity-0'
+          }`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="text-gradient">Get In Touch</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-4" />
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p
+            className={`text-gray-400 text-lg max-w-2xl mx-auto transition-all duration-1000 ${
+              isVisible ? 'scroll-fade-in' : 'opacity-0'
+            }`}
+            style={{ animationDelay: '0.2s' }}
+          >
             Have a project in mind? Let's collaborate and create something amazing together!
           </p>
         </div>
 
+        {/* Main Grid */}
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Contact Info */}
           <div className="space-y-8">
             <div className="space-y-6">
-              <div className="flex items-start space-x-4 group">
+              <div
+                className={`flex items-start space-x-4 group transition-all duration-1000 ${
+                  isVisible ? 'scroll-fade-in-left' : 'opacity-0'
+                }`}
+                style={{ animationDelay: '0.1s' }}
+              >
                 <div className="p-3 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 group-hover:scale-110 transition-transform">
                   <Mail className="w-6 h-6 text-white" />
                 </div>
@@ -126,7 +132,12 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4 group">
+              <div
+                className={`flex items-start space-x-4 group transition-all duration-1000 ${
+                  isVisible ? 'scroll-fade-in-left' : 'opacity-0'
+                }`}
+                style={{ animationDelay: '0.2s' }}
+              >
                 <div className="p-3 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 group-hover:scale-110 transition-transform">
                   <MessageSquare className="w-6 h-6 text-white" />
                 </div>
@@ -137,7 +148,12 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="p-6 rounded-xl bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20">
+            <div
+              className={`p-6 rounded-xl bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 transition-all duration-1000 ${
+                isVisible ? 'scroll-scale-in' : 'opacity-0'
+              }`}
+              style={{ animationDelay: '0.3s' }}
+            >
               <h3 className="text-xl font-semibold text-cyan-400 mb-3">Quick Response</h3>
               <p className="text-gray-400">
                 I typically respond within 24 hours. Looking forward to hearing about your project!
@@ -146,7 +162,12 @@ export default function Contact() {
           </div>
 
           {/* Contact Form */}
-          <div>
+          <div
+            className={`transition-all duration-1000 ${
+              isVisible ? 'scroll-fade-in-right' : 'opacity-0'
+            }`}
+            style={{ animationDelay: '0.1s' }}
+          >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
@@ -197,7 +218,13 @@ export default function Contact() {
               </div>
 
               {status && (
-                <div className={`p-4 rounded-lg ${isError ? 'bg-red-500/10 border border-red-500/20 text-red-400' : 'bg-green-500/10 border border-green-500/20 text-green-400'}`}>
+                <div
+                  className={`p-4 rounded-lg ${
+                    isError
+                      ? 'bg-red-500/10 border border-red-500/20 text-red-400'
+                      : 'bg-green-500/10 border border-green-500/20 text-green-400'
+                  }`}
+                >
                   {status}
                 </div>
               )}
@@ -220,7 +247,7 @@ export default function Contact() {
         <div className="mt-20 text-center">
           <div className="w-full h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent mb-8" />
           <p className="text-gray-500 text-sm flex items-center justify-center gap-2">
-            ©2025 Made with <Heart className="text-red-500" size={16} /> and lots of caffeine by Nawel Amara. 
+            ©2025 Made with <Heart className="text-red-500" size={16} /> and lots of caffeine by Nawel Amara.
           </p>
         </div>
       </div>

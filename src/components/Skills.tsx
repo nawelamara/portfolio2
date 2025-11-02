@@ -1,6 +1,10 @@
 import { Database, Code2, Layout, Server, GitBranch, Cpu } from 'lucide-react';
 
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
+
 export default function Skills() {
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.15 });
+
   const skillCategories = [
     {
       icon: Code2,
@@ -39,16 +43,15 @@ export default function Skills() {
       color: 'from-pink-400 to-pink-600',
     },
   ];
-
-  return (
-    <section id="skills" className="min-h-screen flex items-center justify-center py-20 relative">
+ return (
+    <section id="skills" className="min-h-screen flex items-center justify-center py-20 relative" ref={ref}>
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'scroll-fade-in' : 'opacity-0'}`}>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="text-gradient">Skills & Expertise</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-4" />
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className={`text-gray-400 text-lg max-w-2xl mx-auto transition-all duration-1000 ${isVisible ? 'scroll-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
             A comprehensive toolkit built through dedication, practice, and real-world experience
           </p>
         </div>
@@ -59,7 +62,8 @@ export default function Skills() {
             return (
               <div
                 key={index}
-                className="group p-6 rounded-xl bg-black/50 border border-cyan-500/20 hover:border-cyan-500/40 transition-all duration-300 hover:scale-105 card-glow backdrop-blur-sm"
+                className={`group p-6 rounded-xl bg-black/50 border border-cyan-500/20 hover:border-cyan-500/40 transition-all duration-300 hover:scale-105 card-glow backdrop-blur-sm ${isVisible ? 'scroll-blur-in' : 'opacity-0'}`}
+                style={{ animationDelay: `${0.05 + index * 0.1}s` }}
               >
                 <div className="flex items-center space-x-3 mb-4">
                   <div className={`p-3 rounded-lg bg-gradient-to-r ${category.color} group-hover:scale-110 transition-transform`}>
@@ -84,7 +88,7 @@ export default function Skills() {
         </div>
 
         {/* Progress bars for main skills */}
-        <div className="mt-16 max-w-4xl mx-auto space-y-6">
+        <div className={`mt-16 max-w-4xl mx-auto space-y-6 transition-all duration-1000 ${isVisible ? 'scroll-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.3s' }}>
           <h3 className="text-2xl font-semibold text-center text-cyan-400 mb-8">Proficiency Levels</h3>
           {[
             { name: 'JavaScript/TypeScript', level: 90 },
@@ -101,8 +105,8 @@ export default function Skills() {
                 <div
                   className="h-full bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full transition-all duration-1000 ease-out"
                   style={{
-                    width: `${skill.level}%`,
-                    animation: `slideRight 1s ease-out ${index * 0.2}s forwards`,
+                    width: isVisible ? `${skill.level}%` : '0%',
+                    animation: isVisible ? `slideRight 1s ease-out ${index * 0.2}s forwards` : 'none',
                   }}
                 />
               </div>

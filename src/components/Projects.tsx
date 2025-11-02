@@ -1,6 +1,10 @@
 import { ExternalLink, Github } from 'lucide-react';
 
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
+
 export default function Projects() {
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.15 });
+
   const projects = [
     {
       title: 'QuiZmify – Intelligent Quiz Generator',
@@ -27,7 +31,7 @@ export default function Projects() {
     tags: ['MERN', 'React', 'Express.js', 'MongoDB', 'Node.js'],
     image:
       'https://images.pexels.com/photos/3825529/pexels-photo-3825529.jpeg?auto=compress&cs=tinysrgb&w=800',
-    github: 'https://github.com/nawelamara/health-insurance-management',
+    github: 'https://github.com/nawelamara/Ttelecom',
       demo: 'https://example.com',
     },
     {
@@ -51,16 +55,15 @@ export default function Projects() {
     },
 
   ];
-
-  return (
-    <section id="projects" className="min-h-screen flex items-center justify-center py-20 relative">
+ return (
+    <section id="projects" className="min-h-screen flex items-center justify-center py-20 relative" ref={ref}>
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'scroll-fade-in' : 'opacity-0'}`}>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="text-gradient">Featured Projects</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-4" />
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className={`text-gray-400 text-lg max-w-2xl mx-auto transition-all duration-1000 ${isVisible ? 'scroll-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
             A showcase of my recent work and passion projects that demonstrate my technical abilities
           </p>
         </div>
@@ -69,7 +72,8 @@ export default function Projects() {
           {projects.map((project, index) => (
             <div
               key={index}
-              className="group relative rounded-xl overflow-hidden bg-black/50 border border-cyan-500/20 hover:border-cyan-500/40 transition-all duration-300 hover:scale-105 card-glow backdrop-blur-sm"
+              className={`group relative rounded-xl overflow-hidden bg-black/50 border border-cyan-500/20 hover:border-cyan-500/40 transition-all duration-300 hover:scale-105 card-glow backdrop-blur-sm ${isVisible ? 'scroll-fade-in' : 'opacity-0'}`}
+              style={{ animationDelay: `${0.05 + index * 0.12}s` }}
             >
               <div className="relative h-48 overflow-hidden">
                 <img
