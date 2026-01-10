@@ -13,7 +13,7 @@ export default function Projects() {
     tags: ['MERN', 'React', 'Node.js', 'Express', 'MongoDB'],
       image: '/quizmify11.PNG',
     github: 'https://github.com/nawelamara/Mern-QuizGeneratorGuizmify',
-      demo: 'https://example.com',
+      demo: 'https://frontendquiz-jet.vercel.app/',
     },
     {
     title: 'E-Tourism Platform – Experience Module',
@@ -54,6 +54,15 @@ export default function Projects() {
       demo: 'https://example.com',
     },
 
+    {
+    title: 'Portfolio – Nawel Amara',
+       description:
+      'My personal portfolio built with React and TailwindCSS, featuring smooth animations, a modern UI, and integrated EmailJS contact system.',
+    tags: ['React', 'TailwindCSS', 'EmailJS', 'Vercel'],
+    image:'/port.PNG', 
+   github: 'https://github.com/nawelamara/portfolio',
+      demo: 'https://example.com',
+    },
   ];
  return (
     <section id="projects" className="min-h-screen flex items-center justify-center py-20 relative" ref={ref}>
