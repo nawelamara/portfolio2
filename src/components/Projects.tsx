@@ -55,12 +55,12 @@ export default function Projects() {
     },
 
     {
-    title: 'Portfolio – Nawel Amara',
+    title: 'OrbitCenter – Beauty & Wellness Booking App',
        description:
-      'My personal portfolio built with React and TailwindCSS, featuring smooth animations, a modern UI, and integrated EmailJS contact system.',
-    tags: ['React', 'TailwindCSS', 'EmailJS', 'Vercel'],
-    image:'/port.PNG', 
-   github: 'https://github.com/nawelamara/portfolio',
+      'OrbitCenter — A Flutter mobile app for booking beauty, fitness, and wellness services. Users can browse centers, search for services, manage reservations, and interact with an AI assistant for smart recommendations. Built with Flutter, Firebase, and Google Gemini AI, featuring modern UI and smooth animations.',
+    tags: ['Flutter', 'Firebase Authentication & Cloud Firestore', 'Google Gemini AI', 'Provider'],
+    image:'/Orbit.jpeg', 
+   github: 'https://github.com/nawelamara/HomeFlutterApp',
       demo: 'https://example.com',
     },
   ];
